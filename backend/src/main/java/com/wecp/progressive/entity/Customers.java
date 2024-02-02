@@ -1,9 +1,14 @@
 package com.wecp.progressive.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-
+@Entity
 public class Customers implements Comparable<Customers> {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int customerId;
     private String name;
     private String email;
@@ -22,6 +27,21 @@ public class Customers implements Comparable<Customers> {
         this.password = password;
     }
 
+    public Customers(String name, String email, String username, String password) {
+        this.name = name;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+    }
+
+    public Customers(int customerId, String name, String email, String username, String password, String role) {
+        this.customerId = customerId;
+        this.name = name;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.role = role;
+    }
 
     public int getCustomerId() {
         return customerId;
@@ -46,6 +66,7 @@ public class Customers implements Comparable<Customers> {
     public void setEmail(String email) {
         this.email = email;
     }
+
     public String getUsername() {
         return username;
     }
@@ -71,8 +92,8 @@ public class Customers implements Comparable<Customers> {
     }
 
     @Override
-    public int compareTo(Customers cus1) {
-        
-        return this.getName().compareTo(cus1.getName());
+    public int compareTo(Customers o) {
+        return this.name.compareTo(o.name);
     }
+
 }
